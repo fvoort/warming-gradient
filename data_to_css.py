@@ -9,8 +9,9 @@ if len(sys.argv) < 4:
 source_data = sys.argv[1]
 source_reference_period = [sys.argv[2], sys.argv[3]]
 
-# Reference period, used to calculate boundary between blue and red colors (0°)
-REFERENCE_PERIOD = ['1961', '2010']
+# Baseline periods
+REFERENCE_PERIOD = ['1961', '2010'] # Reference period used to define where blue changes to red
+STANDARD_DEVIATION_PERIOD = ['1901', '2000'] # Period used to scale color intensity
 
 # Colors (from coldest to hottest)
 COLORS = [
