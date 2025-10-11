@@ -2,15 +2,40 @@ import sys
 
 # Ensure that all arguments are provided 
 if len(sys.argv) < 4: 
-  print("Error: insufficient arguments. Usage: python3 data_to_css.py <path/to/data.csv> <anomaly start year> <anomaly end year>") 
+  print("Error: insufficient arguments. Usage: python3 data_to_css.py <path-to/data.csv> <anomaly start year> <anomaly end year>") 
   sys.exit(1)
 
-# Retrieve the data file and source anomaly range from sys.argv
+# Retrieve the source data file and reference period
 source_data = sys.argv[1]
-source_anomalies = [sys.argv[2], sys.argv[3]]
+source_reference_period = [sys.argv[2], sys.argv[3]]
 
-# Convert anomalies to be relative to 1961–2010
-DESTINATION_ANOMALIES = ['1961', '2010']
+# Reference period, used to calculate boundary between blue and red colors (0°)
+REFERENCE_PERIOD = ['1961', '2010']
+
+# Colors (from coldest to hottest)
+COLORS = [
+    '#06244C',
+    '#08306b',
+    '#08519c',
+    '#2171b5',
+    '#4292c6',
+    '#6baed6',
+    '#9ecae1',
+    '#c6dbef',
+    '#deebf7',
+    '#fee0d2', 
+    '#fcbba1', 
+    '#fc9272',
+    '#fb6a4a',
+    '#ef3b2c', 
+    '#cb181d', 
+    '#a50f15', 
+    '#67000d', 
+    '#440007'
+]
+
+# Average temperate in 1961-2010 is boundary between blue and red colors
+# Color intensity (how blue or how red) depends on how far the temperature is from the 1961-2010 average
 
 # Loop over source anomalies
     # Calculate average
