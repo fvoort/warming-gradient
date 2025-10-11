@@ -1,3 +1,4 @@
+import csv
 import sys
 
 # Ensure that all arguments are provided 
@@ -10,8 +11,32 @@ source_data = sys.argv[1]
 source_reference_period = [sys.argv[2], sys.argv[3]]
 
 # Baseline periods
-REFERENCE_PERIOD = ['1961', '2010'] # Reference period used to define where blue changes to red
+REFERENCE_PERIOD = ['1961', '2010'] # Period used to define midpoint (where blue changes to red)
 STANDARD_DEVIATION_PERIOD = ['1901', '2000'] # Period used to scale color intensity
+
+# Function to find average anomaly for period
+def calculate_average(source, period):
+    values = []
+    found_start = False
+
+    # Loop over anomalies
+    with open(source, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            year = row[0].strip()
+            if year == period[0]:
+                found_start = True  # start collecting
+            if found_start:
+                values.append(float(row[1]))
+            if year == period[1]:
+                break  # stop after reaching the end year
+
+    return sum(values) / len(values)
+
+# Calculate difference between source and reference period averages
+source_avg = calculate_average(source_data, source_reference_period)
+reference_avg = calculate_average(source_data, REFERENCE_PERIOD)
+deviation_diff = source_avg - reference_avg
 
 # Colors (from coldest to hottest)
 COLORS = [
@@ -36,10 +61,7 @@ COLORS = [
 ]
 
 # Average temperate in 1961-2010 is boundary between blue and red colors
-# Color intensity (how blue or how red) depends on how far the temperature is from the 1961-2010 average
-
-# Loop over source anomalies
-    # Calculate average
+# Color intensity (how blue or how red) depends on how far the temperature is from the 1901-2000 average
 
 # Loop over destination anomalies
     # Calculate average
