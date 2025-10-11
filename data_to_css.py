@@ -33,6 +33,40 @@ def calculate_average(source, period):
 
     return sum(values) / len(values)
 
+# Function to generate a CSS file with linear gradients using the given colors
+def generate_css(colors):
+    n = len(colors) # Amount of colors
+    step = 100 / n # Calculate width of each stripe
+
+    # Build warming-stripes gradient
+    position = 0 #
+    stops = []
+    for i in range(n):
+        color = colors[i]
+        next_pos = position + step
+        stops.append(f"{color} {position:.2f}%")
+        stops.append(f"{color} {next_pos:.2f}%")
+        position = next_pos
+
+    # Join all colors into a comma-separated string for CSS
+    warming_gradient = ", ".join(colors)
+    warming_stripes = ", ".join(stops)
+
+    # Create CSS gradients
+    gradient = f"""
+.warming-gradient {{
+    background: linear-gradient(to right, {warming_gradient});
+}}
+
+.warming-stripes {{
+    background: linear-gradient(to right,  {warming_stripes})
+}}
+"""
+
+    # Write to a CSS file
+    with open('warming-gradient.css', "w") as f:
+        f.write(gradient)
+
 # Calculate difference between source and reference period averages
 source_avg = calculate_average(source_data, source_reference_period)
 reference_avg = calculate_average(source_data, REFERENCE_PERIOD)
@@ -60,13 +94,10 @@ COLORS = [
     '#440007'
 ]
 
+generate_css(COLORS) # DELETE LATER: Testing function with all colors
+
 # Average temperate in 1961-2010 is boundary between blue and red colors
 # Color intensity (how blue or how red) depends on how far the temperature is from the 1901-2000 average
-
-# Loop over destination anomalies
-    # Calculate average
-
-# Calculate difference between periods (source_average - destination_average)
 
 # Loop over data
     # Adjust all anomalies by difference

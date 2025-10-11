@@ -1,0 +1,8 @@
+
+.warming-gradient {
+    background: linear-gradient(to right, #06244C, #08306b, #08519c, #2171b5, #4292c6, #6baed6, #9ecae1, #c6dbef, #deebf7, #fee0d2, #fcbba1, #fc9272, #fb6a4a, #ef3b2c, #cb181d, #a50f15, #67000d, #440007);
+}
+
+.warming-stripes {
+    background: linear-gradient(to right,  #06244C 0.00%, #06244C 5.56%, #08306b 5.56%, #08306b 11.11%, #08519c 11.11%, #08519c 16.67%, #2171b5 16.67%, #2171b5 22.22%, #4292c6 22.22%, #4292c6 27.78%, #6baed6 27.78%, #6baed6 33.33%, #9ecae1 33.33%, #9ecae1 38.89%, #c6dbef 38.89%, #c6dbef 44.44%, #deebf7 44.44%, #deebf7 50.00%, #fee0d2 50.00%, #fee0d2 55.56%, #fcbba1 55.56%, #fcbba1 61.11%, #fc9272 61.11%, #fc9272 66.67%, #fb6a4a 66.67%, #fb6a4a 72.22%, #ef3b2c 72.22%, #ef3b2c 77.78%, #cb181d 77.78%, #cb181d 83.33%, #a50f15 83.33%, #a50f15 88.89%, #67000d 88.89%, #67000d 94.44%, #440007 94.44%, #440007 100.00%)
+}
