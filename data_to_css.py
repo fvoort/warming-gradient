@@ -72,17 +72,20 @@ source_avg = calculate_average(source_data, source_reference_period)
 reference_avg = calculate_average(source_data, REFERENCE_PERIOD)
 deviation_diff = source_avg - reference_avg
 
-# Colors (from coldest to hottest)
-COLORS = [
-    '#06244C',
-    '#08306b',
-    '#08519c',
-    '#2171b5',
-    '#4292c6',
-    '#6baed6',
-    '#9ecae1',
-    '#c6dbef',
+# Colors (from light to dark)
+BLUE_COLORS = [
     '#deebf7',
+    '#c6dbef',
+    '#9ecae1',
+    '#6baed6',
+    '#4292c6',
+    '#2171b5',
+    '#08519c',
+    '#08306b',
+    '#06244C'
+]
+
+RED_COLORS = [
     '#fee0d2', 
     '#fcbba1', 
     '#fc9272',
@@ -94,7 +97,7 @@ COLORS = [
     '#440007'
 ]
 
-generate_css(COLORS) # DELETE LATER: Testing function with all colors
+generate_css(RED_COLORS) # DELETE LATER: Testing function with all colors
 
 # Average temperate in 1961-2010 is boundary between blue and red colors
 # Color intensity (how blue or how red) depends on how far the temperature is from the 1901-2000 average
