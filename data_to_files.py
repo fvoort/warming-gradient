@@ -4,7 +4,7 @@ import math
 
 # Ensure that all arguments are provided 
 if len(sys.argv) < 2: 
-  print("Error: insufficient arguments. Usage: python3 data_to_css.py <path-to/data.csv> [standard multiples]") 
+  print("Error: insufficient arguments. Usage: python3 data_to_files.py <path-to/data.csv> [standard multiples]") 
   sys.exit(1)
 
 # Retrieve the source data file
@@ -151,30 +151,30 @@ def generate_css(gradient, stripes):
 # Generate SVG
 def generate_svg(gradient, stripes):
     gradient_svg = f"""
-<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
-                .warming-stripes {{
+                .warming-gradient {{
                     width: 100%;
-                    height: 400px;
+                    height: 1280px;
                     background: linear-gradient(to right, {gradient});
                 }}
             </style>
-            <div class="warming-stripes"></div>
+            <div class="warming-gradient"></div>
         </div>
     </foreignObject>
 </svg>
 """
     
     stripes_svg = f"""
-<svg fill="none" viewBox="0 0 800 400" width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
                 .warming-stripes {{
                     width: 100%;
-                    height: 400px;
+                    height: 1280px;
                     background: linear-gradient(to right, {stripes});
                 }}
             </style>
