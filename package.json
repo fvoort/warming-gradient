@@ -1,0 +1,31 @@
+{
+	"name": "warming-gradient",
+	"version": "1.0.0",
+	"description": "CSS gradients visualizing historical temperature data, inspired by Ed Hawkins' Warming Stripes.",
+	"main": "warming-gradient.css",
+	"files": [
+		"warming-gradient.css",
+		"warming-gradient.svg",
+		"warming-stripes.svg"
+	],
+	"keywords": [
+		"warming stripes",
+		"warming gradient",
+		"css",
+		"climate change",
+		"climate data",
+		"warming data",
+		"temperature data",
+		"data visualization"
+	],
+	"homepage": "https://github.com/fvoort/warming-gradient#readme",
+	"bugs": {
+		"url": "https://github.com/fvoort/warming-gradient/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/fvoort/warming-gradient.git"
+	},
+	"license": "MIT",
+	"author": "Flip van de Voort"
+}
