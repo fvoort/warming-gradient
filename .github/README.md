@@ -2,8 +2,8 @@
 
 CSS gradients visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
 
-![](warming-gradient.svg)
-![](warming-stripes.svg)
+![](/warming-gradient.svg)
+![](/warming-stripes.svg)
 
 ## Installation
 
