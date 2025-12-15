@@ -1,18 +1,19 @@
 import csv
-import sys
+import argparse
 import math
 
-# Ensure that all arguments are provided 
-if len(sys.argv) < 2: 
-  print("Error: insufficient arguments. Usage: python3 data_to_files.py <path-to/data.csv> [standard multiples]") 
-  sys.exit(1)
+parser = argparse.ArgumentParser(description="Generate CSS gradient and SVG visualizing historical temperature data")
+parser.add_argument('source_data', help='Data file path')
+parser.add_argument('-s', '--scale', type=float, help='Standard deviation multiple', required=False, default=None)
+
+args = parser.parse_args()
 
 # Retrieve the source data file
-source_data = sys.argv[1]
+source_data = args.source_data
 
 # If provided, retrieve standard multiples
-if len(sys.argv) >= 3:
-    std_multiples = float(sys.argv[2])
+if args.scale:
+    std_multiples = args.scale
     use_fixed_scale = False
 else:
     std_multiples = 0.9 # Default for global
