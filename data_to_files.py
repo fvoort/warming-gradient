@@ -131,11 +131,15 @@ def generate_files(colors):
 
 # Generate CSS with linear gradients
 def generate_css(gradient):
-    gradient_css = f""".warming-gradient {{
-    background: linear-gradient(
-        to right,
-        {gradient}
-    );
+    gradient_css = f""":root {{
+        --warming-gradient: linear-gradient(
+            to right, 
+            {gradient}
+        );
+    }}
+
+.warming-gradient {{
+    background: var(--warming-gradient);
 }}
 """
     return gradient_css

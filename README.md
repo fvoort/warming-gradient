@@ -30,11 +30,11 @@ Or just paste this `<link>` in the `<head>` of your HTML file:
 <link rel="stylesheet" href="node_modules/warming-gradient/warming-gradient.css" />
 ```
 
-The CSS classes will now be available in your project.
+The CSS class and variable will now be available in your project.
 
 ## Option 2: Use via CDN
 
-Just paste this `<link>` in the `<head>` of your HTML file and the CSS classes will be available in your project:
+Just paste this `<link>` in the `<head>` of your HTML file and the CSS class and variable will be available in your project:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/warming-gradient" />
@@ -52,10 +52,14 @@ Just paste this `<link>` in the `<head>` of your HTML file and the CSS classes w
 
 ## How to use
 
-Apply the classes directly in your HTML, for example:
+Apply the class or variable directly in your HTML, for example:
 
 ```html
-<div class="warming-gradient" style="height: 100px;"></div>
+<!-- Use with class -->
+<div class="warming-gradient" style="height: 100px"></div>
+
+<!-- Use with variable -->
+<div style="height: 100px; background: var(--warming-gradient)"></div>
 ```
 
 ## License
