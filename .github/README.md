@@ -70,7 +70,7 @@ Apply the class or variable directly in your HTML, for example:
 python3 data_to_files.py <path-to/data.csv>
 ```
 
-This uses the default global scale (0.9 standard deviations).
+This uses the default fixed scale (0.9 standard deviations).
 
 ### Custom scale
 
@@ -102,7 +102,7 @@ Year,Temperature
 
 The script generates three files:
 
-1. `warming-gradient.css` - A CSS file with class for Warming Gradient
+1. `warming-gradient.css` - A CSS file with class and variable for Warming Gradient
 2. `warming-gradient.svg` - Warming Gradient as SVG
 
 ## How It Works
