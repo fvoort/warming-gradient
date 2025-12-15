@@ -117,41 +117,32 @@ def generate_files(colors):
         stops.append(f"{color} {next_pos:.2f}%")
         position = next_pos
 
-    warming_gradient = ", ".join(colors)
-    warming_stripes = ", ".join(stops)
+    gradient = ", ".join(stops)
 
     # Write to CSS file
-    css = generate_css(warming_gradient, warming_stripes)
+    css = generate_css(gradient)
     with open('warming-gradient.css', 'w') as f:
         f.write(css)
 
     # Write to SVG files
-    gradient_svg = generate_svg(warming_gradient, warming_stripes)[0]
+    gradient_svg = generate_svg(gradient)[0]
     with open('warming-gradient.svg', 'w') as f:
         f.write(gradient_svg)
 
-    stripes_svg = generate_svg(warming_gradient, warming_stripes)[1]
-    with open('warming-stripes.svg', 'w') as f:
-        f.write(stripes_svg)
-
 # Generate CSS with linear gradients
-def generate_css(gradient, stripes):
-    gradient_css = f"""
-.warming-gradient {{
-    background: linear-gradient(to right, {gradient});
-}}
-
-.warming-stripes {{
-    background: linear-gradient(to right, {stripes});
+def generate_css(gradient):
+    gradient_css = f""".warming-gradient {{
+    background: linear-gradient(
+        to right,
+        {gradient}
+    );
 }}
 """
-    
     return gradient_css
 
 # Generate SVG
-def generate_svg(gradient, stripes):
-    gradient_svg = f"""
-<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
+def generate_svg(gradient):
+    gradient_svg = f"""<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
@@ -166,25 +157,7 @@ def generate_svg(gradient, stripes):
     </foreignObject>
 </svg>
 """
-    
-    stripes_svg = f"""
-<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
-    <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <style>
-                .warming-stripes {{
-                    width: 100%;
-                    height: 1280px;
-                    background: linear-gradient(to right, {stripes});
-                }}
-            </style>
-            <div class="warming-stripes"></div>
-        </div>
-    </foreignObject>
-</svg>
-"""
-    
-    return [gradient_svg, stripes_svg]
+    return [gradient_svg]
 
 # Generate the CSS and SVG files
 generate_files(colors)

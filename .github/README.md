@@ -1,9 +1,8 @@
 # Warming Gradient
 
-CSS gradients visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
+CSS gradient visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
 
 ![](/warming-gradient.svg)
-![](/warming-stripes.svg)
 
 ## Installation
 
@@ -56,11 +55,7 @@ Just paste this `<link>` in the `<head>` of your HTML file and the CSS classes w
 Apply the classes directly in your HTML, for example:
 
 ```html
-<!-- Smooth gradient -->
 <div class="warming-gradient" style="height: 100px;"></div>
-
-<!-- Sharp stripes (the original look) -->
-<div class="warming-stripes" style="height: 100px;"></div>
 ```
 
 ## Contributing
@@ -103,9 +98,8 @@ Year,Temperature
 
 The script generates three files:
 
-1. `warming-gradient.css` - A CSS file with classes for a smooth gradient and sharp stripes (the original look)
-2. `warming-gradient.svg` - Smooth gradient as SVG
-3. `warming-stripes.svg` - Sharp stripes
+1. `warming-gradient.css` - A CSS file with class for Warming Gradient
+2. `warming-gradient.svg` - Warming Gradient as SVG
 
 ## How It Works
 
