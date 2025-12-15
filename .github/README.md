@@ -116,7 +116,7 @@ Year,Temperature
 
 ### Output files
 
-The script generates three files:
+The script generates two files:
 
 1. `warming-gradient.css` - A CSS file with class and variable for Warming Gradient
 2. `warming-gradient.svg` - Warming Gradient as SVG
