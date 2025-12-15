@@ -1,18 +1,21 @@
 import csv
-import sys
+import argparse
 import math
 
-# Ensure that all arguments are provided 
-if len(sys.argv) < 2: 
-  print("Error: insufficient arguments. Usage: python3 data_to_files.py <path-to/data.csv> [standard multiples]") 
-  sys.exit(1)
+parser = argparse.ArgumentParser(description="Generate CSS gradient and SVG visualizing historical temperature data")
+parser.add_argument('source_data', help='Data file path')
+parser.add_argument('-s', '--scale', type=float, help='Standard deviation multiple', required=False, default=None)
+parser.add_argument('-b', '--begin', help='Begin year', required=False)
+parser.add_argument('-e', '--end', help='End year', required=False)
+
+args = parser.parse_args()
 
 # Retrieve the source data file
-source_data = sys.argv[1]
+source_data = args.source_data
 
 # If provided, retrieve standard multiples
-if len(sys.argv) >= 3:
-    std_multiples = float(sys.argv[2])
+if args.scale:
+    std_multiples = args.scale
     use_fixed_scale = False
 else:
     std_multiples = 0.9 # Default for global
@@ -74,11 +77,22 @@ if not use_fixed_scale:
 # Assign colors for each year
 colors = []
 with open(source_data, newline='') as csvfile:
+    if args.begin:
+        begin_found = False
+    else:
+        begin_found = True
+
     reader = csv.reader(csvfile)
     next(reader)  # Skip first row
     for row in reader:
         year = row[0].strip()
         value = row[1].strip()
+        
+        if year == args.begin:
+            begin_found = True
+
+        if not begin_found:
+            continue
 
         if not value:
             colors.append('#7f7f7f')  # Missing data
@@ -104,6 +118,10 @@ with open(source_data, newline='') as csvfile:
             index = int(normalized * (len(RED_COLORS) - 1))
             colors.append(RED_COLORS[index])
 
+        # End loop if end year is reached
+        if year == args.end:
+            break
+
 def generate_files(colors):
     n = len(colors)
     step = 100 / n  # Width of each stripe
@@ -117,41 +135,36 @@ def generate_files(colors):
         stops.append(f"{color} {next_pos:.2f}%")
         position = next_pos
 
-    warming_gradient = ", ".join(colors)
-    warming_stripes = ", ".join(stops)
+    gradient = ", ".join(stops)
 
     # Write to CSS file
-    css = generate_css(warming_gradient, warming_stripes)
+    css = generate_css(gradient)
     with open('warming-gradient.css', 'w') as f:
         f.write(css)
 
     # Write to SVG files
-    gradient_svg = generate_svg(warming_gradient, warming_stripes)[0]
+    gradient_svg = generate_svg(gradient)[0]
     with open('warming-gradient.svg', 'w') as f:
         f.write(gradient_svg)
 
-    stripes_svg = generate_svg(warming_gradient, warming_stripes)[1]
-    with open('warming-stripes.svg', 'w') as f:
-        f.write(stripes_svg)
-
 # Generate CSS with linear gradients
-def generate_css(gradient, stripes):
-    gradient_css = f"""
-.warming-gradient {{
-    background: linear-gradient(to right, {gradient});
-}}
+def generate_css(gradient):
+    gradient_css = f""":root {{
+        --warming-gradient: linear-gradient(
+            to right, 
+            {gradient}
+        );
+    }}
 
-.warming-stripes {{
-    background: linear-gradient(to right, {stripes});
+.warming-gradient {{
+    background: var(--warming-gradient);
 }}
 """
-    
     return gradient_css
 
 # Generate SVG
-def generate_svg(gradient, stripes):
-    gradient_svg = f"""
-<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
+def generate_svg(gradient):
+    gradient_svg = f"""<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
@@ -166,25 +179,7 @@ def generate_svg(gradient, stripes):
     </foreignObject>
 </svg>
 """
-    
-    stripes_svg = f"""
-<svg fill="none" viewBox="0 0 2560 1280" width="2560" height="1280" xmlns="http://www.w3.org/2000/svg">
-    <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-            <style>
-                .warming-stripes {{
-                    width: 100%;
-                    height: 1280px;
-                    background: linear-gradient(to right, {stripes});
-                }}
-            </style>
-            <div class="warming-stripes"></div>
-        </div>
-    </foreignObject>
-</svg>
-"""
-    
-    return [gradient_svg, stripes_svg]
+    return [gradient_svg]
 
 # Generate the CSS and SVG files
 generate_files(colors)

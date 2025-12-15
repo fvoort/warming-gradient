@@ -1,9 +1,8 @@
 # Warming Gradient
 
-CSS gradients visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
+CSS gradient visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
 
 ![](/warming-gradient.svg)
-![](/warming-stripes.svg)
 
 ## Installation
 
@@ -31,11 +30,11 @@ Or just paste this `<link>` in the `<head>` of your HTML file:
 <link rel="stylesheet" href="node_modules/warming-gradient/warming-gradient.css" />
 ```
 
-The CSS classes will now be available in your project.
+The CSS class and variable will now be available in your project.
 
 ## Option 2: Use via CDN
 
-Just paste this `<link>` in the `<head>` of your HTML file and the CSS classes will be available in your project:
+Just paste this `<link>` in the `<head>` of your HTML file and the CSS class and variable will be available in your project:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/warming-gradient" />
@@ -53,33 +52,49 @@ Just paste this `<link>` in the `<head>` of your HTML file and the CSS classes w
 
 ## How to use
 
-Apply the classes directly in your HTML, for example:
+Apply the class or variable directly in your HTML, for example:
 
 ```html
-<!-- Smooth gradient -->
-<div class="warming-gradient" style="height: 100px;"></div>
+<!-- Use with class -->
+<div class="warming-gradient" style="height: 100px"></div>
 
-<!-- Sharp stripes (the original look) -->
-<div class="warming-stripes" style="height: 100px;"></div>
+<!-- Use with variable -->
+<div style="height: 100px; background: var(--warming-gradient)"></div>
 ```
 
 ## Contributing
 
-### Basic usage
+### Usage
+
+#### Basic usage
 
 ```bash
 python3 data_to_files.py <path-to/data.csv>
 ```
 
-This uses the default global scale (0.9 standard deviations).
+This uses the default fixed scale (0.9 standard deviations).
 
-### Custom scale
+#### Custom scale
 
 ```bash
-python3 data_to_files.py <path-to-data.csv> 3.0
+python3 data_to_files.py <path-to/data.csv> -s 3.0
+```
+or
+```bash
+python3 data_to_files.py <path-to/data.csv> --scale 3.0
 ```
 
 Specify a custom standard deviation multiple to adjust color intensity.
+
+#### Date range filtering
+```bash
+python3 data_to_files.py <path-to/data.csv> -b 1950 -e 2020
+```
+or
+```bash
+python3 data_to_files.py <path-to/data.csv> -begin 1950 -end 2020
+```
+Filter data to a specific year range.
 
 ### Input data format
 
@@ -103,9 +118,8 @@ Year,Temperature
 
 The script generates three files:
 
-1. `warming-gradient.css` - A CSS file with classes for a smooth gradient and sharp stripes (the original look)
-2. `warming-gradient.svg` - Smooth gradient as SVG
-3. `warming-stripes.svg` - Sharp stripes
+1. `warming-gradient.css` - A CSS file with class and variable for Warming Gradient
+2. `warming-gradient.svg` - Warming Gradient as SVG
 
 ## How It Works
 

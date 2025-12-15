@@ -1,13 +1,8 @@
 {
 	"name": "warming-gradient",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"description": "CSS gradients visualizing historical temperature data, inspired by Ed Hawkins' Warming Stripes.",
 	"main": "warming-gradient.css",
-	"files": [
-		"warming-gradient.css",
-		"warming-gradient.svg",
-		"warming-stripes.svg"
-	],
 	"keywords": [
 		"warming stripes",
 		"warming gradient",
