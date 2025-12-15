@@ -64,7 +64,9 @@ Apply the class or variable directly in your HTML, for example:
 
 ## Contributing
 
-### Basic usage
+### Usage
+
+#### Basic usage
 
 ```bash
 python3 data_to_files.py <path-to/data.csv>
@@ -72,13 +74,27 @@ python3 data_to_files.py <path-to/data.csv>
 
 This uses the default fixed scale (0.9 standard deviations).
 
-### Custom scale
+#### Custom scale
 
 ```bash
-python3 data_to_files.py <path-to/data.csv> 3.0
+python3 data_to_files.py <path-to/data.csv> -s 3.0
+```
+or
+```bash
+python3 data_to_files.py <path-to/data.csv> --scale 3.0
 ```
 
 Specify a custom standard deviation multiple to adjust color intensity.
+
+#### Date range filtering
+```bash
+python3 data_to_files.py <path-to/data.csv> -b 1950 -e 2020
+```
+or
+```bash
+python3 data_to_files.py <path-to/data.csv> -begin 1950 -end 2020
+```
+Filter data to a specific year range.
 
 ### Input data format
 

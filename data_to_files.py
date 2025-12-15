@@ -5,6 +5,8 @@ import math
 parser = argparse.ArgumentParser(description="Generate CSS gradient and SVG visualizing historical temperature data")
 parser.add_argument('source_data', help='Data file path')
 parser.add_argument('-s', '--scale', type=float, help='Standard deviation multiple', required=False, default=None)
+parser.add_argument('-b', '--begin', help='Begin year', required=False)
+parser.add_argument('-e', '--end', help='End year', required=False)
 
 args = parser.parse_args()
 
@@ -75,11 +77,22 @@ if not use_fixed_scale:
 # Assign colors for each year
 colors = []
 with open(source_data, newline='') as csvfile:
+    if args.begin:
+        begin_found = False
+    else:
+        begin_found = True
+
     reader = csv.reader(csvfile)
     next(reader)  # Skip first row
     for row in reader:
         year = row[0].strip()
         value = row[1].strip()
+        
+        if year == args.begin:
+            begin_found = True
+
+        if not begin_found:
+            continue
 
         if not value:
             colors.append('#7f7f7f')  # Missing data
@@ -104,6 +117,10 @@ with open(source_data, newline='') as csvfile:
         else:
             index = int(normalized * (len(RED_COLORS) - 1))
             colors.append(RED_COLORS[index])
+
+        # End loop if end year is reached
+        if year == args.end:
+            break
 
 def generate_files(colors):
     n = len(colors)
