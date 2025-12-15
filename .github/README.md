@@ -75,7 +75,7 @@ This uses the default global scale (0.9 standard deviations).
 ### Custom scale
 
 ```bash
-python3 data_to_files.py <path-to-data.csv> 3.0
+python3 data_to_files.py <path-to/data.csv> 3.0
 ```
 
 Specify a custom standard deviation multiple to adjust color intensity.
