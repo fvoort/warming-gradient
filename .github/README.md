@@ -1,3 +1,6 @@
+> [!Warning]
+> This project has moved to https://tangled.org/fvoort.com/warming-gradient. This repository is archived.
+
 # Warming Gradient
 
 CSS gradient visualizing historical temperature data, inspired by [Ed Hawkins' Warming Stripes](https://showyourstripes.info).
